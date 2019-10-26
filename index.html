@@ -8,16 +8,19 @@
 <body>
 
     <div class="container">
+        <h1>All Things Russia!</h1>
+        <p>Click the buttons to see some GIFs. Don't stop there, get creative and add more buttons! Click the GIFs to
+            animate them. Click again to pause.</p>
 
         <!-- Buttons will get dumped here -->
         <div id="buttons-view"></div>
 
-        <form id="panda-form">
-            <label for="panda-input">Add a Panda Thing</label>
-            <input type="text" id="panda-input"><br>
+        <form id="russia-form">
+            <label for="russia-input">Don't stop there! Add a Russian thing: </label>
+            <input type="text" id="russia-input"><br>
 
-            <!-- Button triggers new panda to be added -->
-            <input id="add-panda" type="submit" value="Add Button">
+            <!-- Button triggers new russia to be added -->
+            <input id="add-russia" type="submit" value="Add Button">
         </form>
 
         <div id="gifs-appear-here">
@@ -25,12 +28,11 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
-            // Initial array of pandas
-            var topics = ["Giant Panda", "Red Panda", "Bamboo", "China", "Baby Panda"];
+            // Initial array of russias
+            var topics = ["vodka", "rhinestones", "putin", "adidas", "bears", "dash cams", "resting bitch face"];
 
-            // Function to displays GIFs
-
-            function displayPandaGifs() {
+            // Function to displays GIFs when buttons are clicked
+            function displayrussiaGifs() {
                 var buttonItem = $(this).attr("data-name");
                 console.log("you clicked " + buttonItem);
 
@@ -55,13 +57,25 @@
                         var newP = $("<p>").text("Rating: " + rating);
 
                         // Making a new img for the userInput gif
-                        var pandaImage = $("<img>");
+                        var russiaImage = $("<img>");
                         // Creating a new attribute (src) and setting it to the url
-                        pandaImage.attr("src", results[i].images.fixed_height.url);
+                        russiaImage.attr("src", results[i].images.fixed_height_still.url);
+
+                        // Creating a new attribute (data-still) and setting it to the corresponding url
+                        russiaImage.attr("data-still", results[i].images.fixed_height_still.url);
+
+                        // Creating a new attribute (data-animate) and setting it to the corresponding url
+                        russiaImage.attr("data-animate", results[i].images.fixed_height.url);
+
+
+                        // Assigning attribute of 'animate' to the gif
+                        russiaImage.attr("data-state", "still");
+                        // Assigning class of .gif to the image
+                        russiaImage.addClass("gif");
 
                         // prepending the rating and gif image to the new div that was created
                         newDiv.prepend(newP);
-                        newDiv.prepend(pandaImage);
+                        newDiv.prepend(russiaImage);
 
                         // prepending the new div onto the page
                         $("#gifs-appear-here").prepend(newDiv);
@@ -71,15 +85,7 @@
             }
 
 
-
-
-
-
-
-
-
-
-            // Function
+            // Function to add new buttons to page
             function renderButtons() {
 
                 // Deleting the movie buttons prior to adding new movie buttons
@@ -90,7 +96,7 @@
 
                     var newBtn = $("<button>");
                     // Adding a class
-                    newBtn.addClass("panda");
+                    newBtn.addClass("russia");
                     // Adding a data-attribute with a value of the movie at index i
                     newBtn.attr("data-name", topics[i]);
                     // Providing the button's text with a value of the movie at index i
@@ -101,26 +107,55 @@
             }
 
             // This function handles events where Add Button is clicked
-            $("#add-panda").on("click", function (event) {
+            $("#add-russia").on("click", function (event) {
                 // event.preventDefault() prevents the form from trying to submit itself.
                 event.preventDefault();
 
                 // This line will grab the text from the input box
-                var userInput = $("#panda-input").val().trim();
+                var userInput = $("#russia-input").val().trim();
                 // The input from the textbox is then added to our array
                 topics.push(userInput);
 
                 // calling renderButtons which handles the processing of our movie array
                 renderButtons();
 
-
             });
 
-            // Adding a click event listener to all elements with a class of "movie-btn"
-            $(document).on("click", ".panda", displayPandaGifs);
+
+
+            function animateGif() {
+
+                // On click let's see what the data state of the clicked gif is set to
+                var state = $(this).attr("data-state");
+                console.log(state);
+
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                }
+
+                // If state is equal to 'animate', then update the src attribute of this
+                // image to it's data-still value and update the data-state attribute to 'still'
+                else if (state === "animate") {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+
+            }
+
+
+            // Adding a click event listener to all elements with a class of "russia"
+            $(document).on("click", ".russia", displayrussiaGifs);
 
             // Calling the renderButtons function at least once to display the initial list of movies
             renderButtons();
+
+
+            // Adding a click event listener to all elements with a class of "gif"
+            $(document).on("click", ".gif", animateGif);
+
+
+
         </script>
     </div>
 </body>
