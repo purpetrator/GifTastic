@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Giftastic</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Buttons will get dumped here -->
+        <div id="buttons-view"></div>
+
+        <form id="panda-form">
+            <label for="panda-input">Add a Panda Thing</label>
+            <input type="text" id="panda-input"><br>
+
+            <!-- Button triggers new panda to be added -->
+            <input id="add-panda" type="submit" value="Add Button">
+        </form>
+
+        <div id="gifs-appear-here">
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            // Initial array of pandas
+            var topics = ["Giant Panda", "Red Panda", "Bamboo", "China", "Baby Panda"];
+
+            // Function to displays GIFs
+
+            function displayPandaGifs() {
+                var buttonItem = $(this).attr("data-name");
+                console.log("you clicked " + buttonItem);
+
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + buttonItem + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    var results = response.data;
+                    console.log(response);
+
+                    for (var i = 0; i < results.length; i++) {
+                        // Making a new div
+                        var newDiv = $("<div>");
+
+                        // Getting the rating from the JSON object
+                        var rating = results[i].rating;
+                        console.log(rating);
+
+                        // Making a new paragraph for the rating
+                        var newP = $("<p>").text("Rating: " + rating);
+
+                        // Making a new img for the userInput gif
+                        var pandaImage = $("<img>");
+                        // Creating a new attribute (src) and setting it to the url
+                        pandaImage.attr("src", results[i].images.fixed_height.url);
+
+                        // prepending the rating and gif image to the new div that was created
+                        newDiv.prepend(newP);
+                        newDiv.prepend(pandaImage);
+
+                        // prepending the new div onto the page
+                        $("#gifs-appear-here").prepend(newDiv);
+
+                    }
+                });
+            }
+
+
+
+
+
+
+
+
+
+
+            // Function
+            function renderButtons() {
+
+                // Deleting the movie buttons prior to adding new movie buttons
+                $("#buttons-view").empty();
+
+                // Looping through the array of movies
+                for (var i = 0; i < topics.length; i++) {
+
+                    var newBtn = $("<button>");
+                    // Adding a class
+                    newBtn.addClass("panda");
+                    // Adding a data-attribute with a value of the movie at index i
+                    newBtn.attr("data-name", topics[i]);
+                    // Providing the button's text with a value of the movie at index i
+                    newBtn.text(topics[i]);
+                    // Adding the button to the HTML
+                    $("#buttons-view").append(newBtn);
+                }
+            }
+
+            // This function handles events where Add Button is clicked
+            $("#add-panda").on("click", function (event) {
+                // event.preventDefault() prevents the form from trying to submit itself.
+                event.preventDefault();
+
+                // This line will grab the text from the input box
+                var userInput = $("#panda-input").val().trim();
+                // The input from the textbox is then added to our array
+                topics.push(userInput);
+
+                // calling renderButtons which handles the processing of our movie array
+                renderButtons();
+
+
+            });
+
+            // Adding a click event listener to all elements with a class of "movie-btn"
+            $(document).on("click", ".panda", displayPandaGifs);
+
+            // Calling the renderButtons function at least once to display the initial list of movies
+            renderButtons();
+        </script>
+    </div>
+</body>
+
+</html>
