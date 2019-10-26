@@ -1,0 +1,72 @@
+body {
+  background-color: #235789;
+  /* background-image: url(https://previews.123rf.com/images/badwiser/badwiser1609/badwiser160900002/62711091-russian-background-world-of-russia-pattern-with-modern-and-traditional-elements-vector-illustration.jpg); */
+  background-image: url(untitled.png);
+  background-repeat: repeat repeat;
+}
+
+.russia {
+  /* Borrowed this button styling from https://fdossena.com */
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.8em 0.8em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: #da291c;
+}
+.russia:hover {
+  color: #000000;
+  background-color: #ffffff;
+}
+@media all and (max-width: 30em) {
+   .russia {
+    display: block;
+    margin: 0.4em auto;
+  }
+}
+
+.jumbotron {
+  background-color: #001b56;
+  opacity: 0.95;
+  color: #ffffff;
+  margin: 20px 40px;
+}
+
+#add-russia {
+  background-color: #d6a802;
+  margin: 10px;
+}
+
+#buttons-view {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#russia-input {
+  border: 0.1em solid #ffffff;
+  border-radius: 0.12em;
+  margin: 10px;
+  padding: 2px 8px;
+  background-color: #ffffff;
+}
+
+#russia-form {
+  /* border: 0.1em solid #ffffff; */
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+#gifs-appear-here {
+  margin: 22px;
+  /* display: flex; */
+}

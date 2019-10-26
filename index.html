@@ -3,28 +3,40 @@
 
 <head>
     <title>Giftastic</title>
+    <!-- Link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Link to external stylesheet-->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div class="container">
-        <h1>All Things Russia!</h1>
-        <p>Click the buttons to see some GIFs. Don't stop there, get creative and add more buttons! Click the GIFs to
-            animate them. Click again to pause.</p>
 
-        <!-- Buttons will get dumped here -->
-        <div id="buttons-view"></div>
+        <div class="jumbotron">
+            <h1 class="display-4">All Things Russia</h1>
+            <p class="lead">Click the buttons to see some GIFs. Don't stop there-- get creative and add more buttons!
+            </p>
+            <hr class="my-3">
+            <p>Click the GIFs to animate them. Click again to pause.</p>
 
-        <form id="russia-form">
-            <label for="russia-input">Don't stop there! Add a Russian thing: </label>
-            <input type="text" id="russia-input"><br>
 
-            <!-- Button triggers new russia to be added -->
-            <input id="add-russia" type="submit" value="Add Button">
-        </form>
+            <!-- Buttons will get dumped here -->
+            <div id="buttons-view"></div>
 
-        <div id="gifs-appear-here">
+            <form id="russia-form">
+                <label for="russia-input">Add another Russian thing: </label>
+                <input type="text" id="russia-input"><br>
+
+                <!-- Button triggers new russia to be added -->
+                <button type="button" class="btn btn-primary btn-md" id="add-russia">Na'zdarovya!</button>
+            </form>
+
+            <div class="container" id="gifs-appear-here">
+            </div>
         </div>
+
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="text/javascript">
@@ -88,18 +100,18 @@
             // Function to add new buttons to page
             function renderButtons() {
 
-                // Deleting the movie buttons prior to adding new movie buttons
+                // Deleting the existing buttons prior to adding new buttons
                 $("#buttons-view").empty();
 
-                // Looping through the array of movies
+                // Looping through the array of topics
                 for (var i = 0; i < topics.length; i++) {
 
                     var newBtn = $("<button>");
                     // Adding a class
                     newBtn.addClass("russia");
-                    // Adding a data-attribute with a value of the movie at index i
+                    // Adding a data-attribute with a value of the input at index i
                     newBtn.attr("data-name", topics[i]);
-                    // Providing the button's text with a value of the movie at index i
+                    // Providing the button's text with a value of the input at index i
                     newBtn.text(topics[i]);
                     // Adding the button to the HTML
                     $("#buttons-view").append(newBtn);
@@ -116,7 +128,7 @@
                 // The input from the textbox is then added to our array
                 topics.push(userInput);
 
-                // calling renderButtons which handles the processing of our movie array
+                // calling renderButtons which handles the processing of our array
                 renderButtons();
 
             });
@@ -143,15 +155,13 @@
 
             }
 
-
-            // Adding a click event listener to all elements with a class of "russia"
-            $(document).on("click", ".russia", displayrussiaGifs);
-
-            // Calling the renderButtons function at least once to display the initial list of movies
+            // Calling the renderButtons once to display the initial list of buttons
             renderButtons();
 
+            // When buttons with a class of 'russia' are clicked, call the displayrussiaGifs function
+            $(document).on("click", ".russia", displayrussiaGifs);
 
-            // Adding a click event listener to all elements with a class of "gif"
+            // When gifs are clicked, call the animateGif function
             $(document).on("click", ".gif", animateGif);
 
 
