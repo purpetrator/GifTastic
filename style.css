@@ -35,8 +35,7 @@ body {
 }
 
 .jumbotron {
-  background-color: #001b56;
-  opacity: 0.95;
+  background: rgba(0, 27, 86, 0.92);
   color: #ffffff;
   margin: 20px 40px;
 }
@@ -79,15 +78,14 @@ body {
 }
 
 #gifs-appear-here {
-  margin: 22px;
+  padding: 22px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   justify-items: center;
 }
 
-img {
+#gifs-appear-here div {
   margin: 14px;
-  /* justify-content: space-between;
-  justify-items: center; */
+  padding: 6px;
 }

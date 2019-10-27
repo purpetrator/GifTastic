@@ -127,13 +127,29 @@
                     // event.preventDefault() prevents the form from trying to submit itself.
                     event.preventDefault();
 
+                    function clearInput() {
+                        // clears input area for next entry
+                        $("#russia-input").val("");
+                    }
+
                     // This line will grab the text from the input box
                     var userInput = $("#russia-input").val().trim();
-                    // The input from the textbox is then added to our array
-                    topics.push(userInput);
 
-                    // calling renderButtons which handles the processing of our array
-                    renderButtons();
+                    // The input from the textbox is then added to our array
+
+                    if (userInput.length > 1) {
+                        topics.push(userInput);
+
+                        // calling renderButtons which handles the processing of our array
+                        renderButtons();
+                        clearInput();
+
+
+                    } else {
+                        alert("Please enter a word longer than 1 character.");
+                        clearInput();
+                    }
+
 
                 });
 
