@@ -1,12 +1,12 @@
 # GifTastic
 
-> Make an interactive website using the GIPHY API
+Goal: Make an interactive website using the GIPHY API
 
 This is a project showing my skills with AJAX, APIs, and JQuery.
 
-Deployed: https://github.com/purpetrator/GifTastic
+> Deployed: https://github.com/purpetrator/GifTastic
 
-![Parameters of the project:]
+# Parameters of the project:
 
 - Create an array of strings, each one related to a topic that interests you.
 
@@ -20,7 +20,8 @@ Deployed: https://github.com/purpetrator/GifTastic
 
 - Add a form to your page that takes a value from a user input box and adds it to your `topics` array. Then make a function call that takes each topic in the array and remakes the buttons on the page.
 
-![Overview]
+# Overview
+
 I made a Russia-inspired app that pulls GIFs with the GIPHY API.
 
 The app has a few buttons already on the page. The user can add more buttons by entering new terms into the input field.
