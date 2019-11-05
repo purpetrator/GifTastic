@@ -4,7 +4,7 @@ Goal: Make an interactive website using the GIPHY API
 
 This is a project showing my skills with AJAX, APIs, and JQuery.
 
-> Deployed: https://github.com/purpetrator/GifTastic
+> Deployed: https://purpetrator.github.io/GifTastic/
 
 # Parameters of the project:
 
