@@ -1,7 +1,6 @@
 body {
   background-color: #235789;
-  /* background-image: url(https://previews.123rf.com/images/badwiser/badwiser1609/badwiser160900002/62711091-russian-background-world-of-russia-pattern-with-modern-and-traditional-elements-vector-illustration.jpg); */
-  background-image: url(Untitled2.png);
+  background-image: url("Untitled2.png");
   background-repeat: repeat repeat;
 }
 
